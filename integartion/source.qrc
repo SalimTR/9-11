@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>login-logo.png</file>
-        <file>password.png</file>
-        <file>username.png</file>
         <file>911.png</file>
         <file>14135.png</file>
+        <file>account ion.png</file>
         <file>admin.png</file>
         <file>g_account.png</file>
         <file>g_agency.png</file>
@@ -17,5 +15,8 @@
         <file>g_empl.png</file>
         <file>g_vol.png</file>
         <file>g_voyageur.png</file>
+        <file>login-logo.png</file>
+        <file>password.png</file>
+        <file>username.png</file>
     </qresource>
 </RCC>

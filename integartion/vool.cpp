@@ -20,25 +20,23 @@ int VOOL::get_nb_voyageurs(){return  nb_voyageurs;}
 bool VOOL::ajouter()
 {
 QSqlQuery query;
-QString res= QString::number(nb_voyageurs);
-QString res1= QString::number(refvol);
 query.prepare("INSERT INTO vool (reference, destination,date_vol,nb_voyageurs) "
                     "VALUES (:refvol,:destination,:date,:nb_voyageurs)");
 
-query.bindValue(":refvol", res1);
+query.bindValue(":refvol", refvol);
 query.bindValue(":destination", destination);
-query.bindValue(":nb_voyageurs", res);
+query.bindValue(":nb_voyageurs", nb_voyageurs);
 query.bindValue(":date", date_vol);
 return    query.exec();
 }
 
 QSqlQueryModel * VOOL::afficher()
-{QSqlQueryModel * model= new QSqlQueryModel();
-
-model->setQuery("select * from VOOL");
+{
+   QSqlQueryModel * model= new QSqlQueryModel();
+model->setQuery("select * from vool");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("reference"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("destination"));
-model->setHeaderData(2, Qt::Horizontal, QObject::tr("date_vol"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("date_vol"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("destination"));
 model->setHeaderData(3, Qt::Horizontal, QObject::tr("nb_voyageurs"));
     return model;
 }
@@ -49,6 +47,7 @@ QSqlQuery query;
 query.prepare("Delete from VOOL where reference = :refvol ");
 query.bindValue(":refvol", refvol_ch);
 return    query.exec();
+
 }
 bool VOOL::rech(int x){
     QSqlQuery query;

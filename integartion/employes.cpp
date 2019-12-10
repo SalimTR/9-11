@@ -31,16 +31,13 @@ QString Employes::get_departement(){return departement;}
 bool Employes::ajouter()
 {
     QSqlQuery query;
-    QString res1= QString::number(cin);
-    QString res2= QString::number(age);
-    QString res3= QString::number(tel);
-    query.prepare("INSERT INTO EMPLOYES (cin, nom, prenom, age, tel, adresse, departement) "
+    query.prepare("INSERT INTO EMPLOYES (cin, nom, prenom, age, telephone, adresse, departement) "
                         "VALUES (:cin, :nom, :prenom, :age, :tel, :adresse, :departement)");
-    query.bindValue(":cin",res1);
+    query.bindValue(":cin",cin);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
-    query.bindValue(":age",res2);
-    query.bindValue(":tel",res3);
+    query.bindValue(":age",age);
+    query.bindValue(":tel",tel);
     query.bindValue(":adresse",adresse);
     query.bindValue(":departement",departement);
     return    query.exec();
@@ -61,24 +58,20 @@ QSqlQueryModel * Employes::afficher()
 bool Employes::supprimer(int cin)
 {
 QSqlQuery query;
-QString res= QString::number(cin);
-query.prepare("Delete from employes where cin = :cin ");
-query.bindValue(":cin", res);
+query.prepare("Delete from employes where cin=:cin");
+query.bindValue(":cin",cin);
 return    query.exec();
 }
 
 bool Employes::modifier(int cin,QString nom,QString prenom,int age,int tel,QString adresse,QString departement)
 {
 QSqlQuery query;
-QString res= QString::number(cin);
-QString res1= QString::number(age);
-QString res2= QString::number(tel);
-query.prepare("update employes set nom=:nom,prenom=:prenom,age=:age,tel=:tel,adresse=:adresse,departement=:departement where cin=:cin");
-query.bindValue(":cin", res);
+query.prepare("update employes set nom=:nom,prenom=:prenom,age=:age,telephone=:tel,adresse=:adresse,departement=:departement where cin=:cin");
+query.bindValue(":cin", cin);
 query.bindValue(":nom", nom);
 query.bindValue(":prenom", prenom);
-query.bindValue(":age", res1);
-query.bindValue(":tel", res2);
+query.bindValue(":age", age);
+query.bindValue(":tel", tel);
 query.bindValue(":adresse", adresse);
 query.bindValue(":departement", departement);
 return    query.exec();

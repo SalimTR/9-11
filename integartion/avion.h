@@ -21,6 +21,7 @@ public:
       bool modifier(QString mat,QString comp,QString model,QString mat_modif);
       QSqlQueryModel * trier();
       QSqlQueryModel * afficher();
+      QSqlQueryModel * statistic();
 
 };
 

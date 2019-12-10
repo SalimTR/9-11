@@ -45,20 +45,17 @@ model->setHeaderData(3, Qt::Horizontal, QObject::tr("prenom"));
 bool voyageur::supprimer(QString cin)
 {
 QSqlQuery query;
-QString res= cin;
 query.prepare("Delete from voyageurs where cin = :cin ");
-query.bindValue(":cin", res);
+query.bindValue(":cin", cin);
 return    query.exec();
 }
 
 bool voyageur::modifier(QString cin,QString tel,QString nom,QString prenom)
 {
     QSqlQuery query;
-    QString res= cin;
-    QString res2= tel;
     query.prepare("update voyageurs set tel=:tel,nom=:nom,prenom=:prenom where cin=:cin");
-    query.bindValue(":cin", res);
-    query.bindValue(":tel", res2);
+    query.bindValue(":cin",cin);
+    query.bindValue(":tel", tel);
      query.bindValue(":nom", nom);
       query.bindValue(":prenom", prenom);
     return    query.exec();

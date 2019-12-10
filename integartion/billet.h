@@ -7,17 +7,17 @@
 
 class billet
 {  int code;
-   QDate date;
+   QString date;
    QString destination;
 public:
 
     billet();
-    billet(int,QDate,QString);
+    billet(int,QString,QString);
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(int);
     QSqlQueryModel * trier();
-    bool modifier(int,QDate,QString);
+    bool modifier(int,QString,QString);
 };
 
 #endif

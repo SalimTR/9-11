@@ -21,14 +21,12 @@ int Departement::get_numEmp(){return numEmp;}
 bool Departement::ajouter()
 {
     QSqlQuery query;
-    QString res1= QString::number(id);
-    QString res2= QString::number(numEmp);
-    query.prepare("INSERT INTO departement (id, nom, chef, numEmp) "
-                        "VALUES (:id, :nom, :chef, :numEmp)");
-    query.bindValue(":id", res1);
+    query.prepare("INSERT INTO departements (id, nom, chef, numemp) "
+                        "VALUES (:id, :nom, :chef, :numemp)");
+    query.bindValue(":id", id);
     query.bindValue(":nom", nom);
     query.bindValue(":chef", chef);
-    query.bindValue("numEmp", res2);
+    query.bindValue(":numemp", numEmp);
 
     return    query.exec();
 }
@@ -36,7 +34,7 @@ bool Departement::ajouter()
 QSqlQueryModel * Departement::afficher()
 {QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from departement");
+model->setQuery("select * from departements");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("chef"));
@@ -48,7 +46,7 @@ bool Departement::supprimer(int id)
 {
     QSqlQuery query;
     QString res=QString::number(id);
-    query.prepare("Delete from departement where id = :id ");
+    query.prepare("Delete from departements where id = :id ");
     query.bindValue(":id", res);
     return    query.exec();
 }
@@ -56,13 +54,11 @@ bool Departement::supprimer(int id)
 bool Departement::modifier(int id,QString nom,QString chef,int numEmp)
 {
     QSqlQuery query;
-    QString res= QString::number(id);
-    QString res1= QString::number(numEmp);
-    query.prepare("update departement set nom=:nom,chef=:chef,numEmp=:numEmp where id=:id");
-    query.bindValue(":id", res);
+    query.prepare("update departements set nom=:nom,chef=:chef,numemp=:numEmp where id=:id");
+    query.bindValue(":id",id);
     query.bindValue(":nom", nom);
     query.bindValue(":chef", chef);
-    query.bindValue(":numEmp", res1);
+    query.bindValue(":numEmp",numEmp);
     return    query.exec();
 }
 
